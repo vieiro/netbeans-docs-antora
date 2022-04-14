@@ -1,0 +1,58 @@
+= NetBeans Documentation
+
+This is an experiment for NetBeans Platform documentation using the link:https://antora.org/[Antora] documentation site generator.
+
+== Structure
+
+This is the main repository. Other repositories conforming the documentation are:
+
+- link:https://github.com/vieiro/netbeans-docs-tutorials[NetBeans Platform Tutorials].
+- link:https://github.com/vieiro/netbeans-docs-samples[NetBeans Platform Examples].
+
+== Generating the documentation
+
+See the link:https://docs.antora.org/antora/latest/install-and-run-quickstart/[Antora install and run quickstart] for instructions.
+
+Basically the steps are as follow:
+
+. Install link:https://nodejs.org[node.js] version 12 or later.
+. Install Antora (globally?) running `npm i -g @antora/cli@3.0.0 @antora/site-generator@3.0.0`
+. Clone this repository.
+. In this repository, run `npx antora --fetch antora-playbook.yml`
+. Then run a web server showing the result: `(cd build/site; python3 -m http.server --directory .)`
+
+[NOTE]
+====
+
+For local development, you can change the `url` in `antora-playbook.yml` to point to a local directory with the tutorials:
+
+[source, diff]
+----
+diff --git a/antora-playbook.yml b/antora-playbook.yml
+index 3853c72..f68f539 100644
+--- a/antora-playbook.yml
++++ b/antora-playbook.yml
+@@ -24,7 +24,7 @@ site:
+   robots: allow
+ content:
+   sources: 
+-  - url: https://github.com/vieiro/netbeans-docs-tutorials.git
++  - url: ../netbeans-docs-tutorials/ # https://github.com/vieiro/netbeans-docs-tutorials.git
+     branches: HEAD
+ ui: 
+   bundle:
+----
+====
+
+
+== TO-DO
+
+* Test if Antora suites us.
+* Update *all* platform tutorials to Apache NetBeans (in the NetBeans Platform Tutorials repo).
+** Creating new screenshots with Apache NetBeans.
+** Creating or updating samples as required.
+* Customize Antora's default UI for NetBeans.
+* Add search capabilities.
+* Publish to netbeans.apache.org with a proper pipeline.
+
+
